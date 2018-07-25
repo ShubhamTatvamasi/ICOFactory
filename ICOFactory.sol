@@ -4,7 +4,7 @@ pragma solidity ^0.4.24;
 * @author Shubham Tatvamasi
 */
 contract ICOFactory {
-    address[] newContracts;
+    address[] public newContracts;
 
     function newToken (uint256 initialSupply, string tokenName, string tokenSymbol) public {
 
