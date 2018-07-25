@@ -6,9 +6,9 @@ pragma solidity ^0.4.24;
 contract ICOFactory {
     address[] public newContracts;
 
-    function newToken (uint256 initialSupply, string tokenName, string tokenSymbol) public {
+    function newToken (uint256 initialSupply, string tokenName, string tokenSymbol, address tokenHolder) public {
 
-        address newContract = new TokenERC20(initialSupply, tokenName, tokenSymbol);
+        address newContract = new TokenERC20(initialSupply, tokenName, tokenSymbol, tokenHolder);
         newContracts.push(newContract);
     } 
 }
@@ -44,10 +44,11 @@ contract TokenERC20 {
     constructor (
         uint256 initialSupply,
         string tokenName,
-        string tokenSymbol
+        string tokenSymbol,
+        address tokenHolder
     ) public {
         totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
-        balanceOf[msg.sender] = totalSupply;                // Give the creator all initial tokens
+        balanceOf[tokenHolder] = totalSupply;                // Give the creator all initial tokens
         name = tokenName;                                   // Set the name for display purposes
         symbol = tokenSymbol;                               // Set the symbol for display purposes
     }
