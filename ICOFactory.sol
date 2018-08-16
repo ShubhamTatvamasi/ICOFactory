@@ -10,13 +10,13 @@ contract ICOFactory {
     uint initialSupply;
     string tokenName;
     string tokenSymbol;
-    address tokenHolder;
+    address tokenCreator;
     address tokenAddress;
   }
 
-  function newToken (uint256 initialSupply, string tokenName, string tokenSymbol, address tokenHolder) public {
-    address newContract = new TokenERC20(initialSupply, tokenName, tokenSymbol, tokenHolder);
-    tokens.push(Token(initialSupply, tokenName, tokenSymbol, tokenHolder, newContract));
+  function newToken (uint256 initialSupply, string tokenName, string tokenSymbol) public {
+    address newContract = new TokenERC20(initialSupply, tokenName, tokenSymbol, msg.sender);
+    tokens.push(Token(initialSupply, tokenName, tokenSymbol, msg.sender, newContract));
   }
 
   function totalTokens() public view returns (uint) {
@@ -56,10 +56,10 @@ contract TokenERC20 {
     uint256 initialSupply,
     string tokenName,
     string tokenSymbol,
-    address tokenHolder
+    address tokenCreator
   ) public {
     totalSupply = initialSupply * 10 ** uint256(decimals);  // Update total supply with the decimal amount
-    balanceOf[tokenHolder] = totalSupply;                // Give the creator all initial tokens
+    balanceOf[tokenCreator] = totalSupply;                // Give the creator all initial tokens
     name = tokenName;                                   // Set the name for display purposes
     symbol = tokenSymbol;                               // Set the symbol for display purposes
   }
