@@ -7,16 +7,16 @@ contract ICOFactory {
   Token[] public tokens;
 
   struct Token {
-    uint initialSupply;
+    uint totalSupply;
     string tokenName;
     string tokenSymbol;
     address tokenCreator;
     address tokenAddress;
   }
 
-  function newToken (uint256 initialSupply, string tokenName, string tokenSymbol) public {
-    address newContract = new TokenERC20(initialSupply, tokenName, tokenSymbol, msg.sender);
-    tokens.push(Token(initialSupply, tokenName, tokenSymbol, msg.sender, newContract));
+  function newToken (uint256 totalSupply, string tokenName, string tokenSymbol) public {
+    address newContract = new TokenERC20(totalSupply, tokenName, tokenSymbol, msg.sender);
+    tokens.push(Token(totalSupply, tokenName, tokenSymbol, msg.sender, newContract));
   }
 
   function totalTokens() public view returns (uint) {
