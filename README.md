@@ -2,4 +2,4 @@
 
 ICOFactory Address
 
-https://rinkeby.etherscan.io/address/0xd10162a542205f30716684dfc3ffd696c03c8d8d
+https://rinkeby.etherscan.io/address/0x92bcb22af48b029f1ebec400806da2d32acb6746
